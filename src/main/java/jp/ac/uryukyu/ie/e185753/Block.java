@@ -7,7 +7,7 @@ public class Block {
     private String data;//To make data private variable, data can protect from others.
     private long timestamps; //record a log.
 
-    //Bloc Constructor.
+    //Block Constructor.
     public Block(String data,String previousHash){
         this.data = data;
         this.previousHash = previousHash;
