@@ -13,4 +13,8 @@ public class Block {
         this.previousHash = previousHash;
         this.timestamps = new Date().getTime();
     }
+    public long getTimestamps(){
+        //test operation
+        return timestamps;
+    }
 }
