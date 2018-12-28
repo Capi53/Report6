@@ -12,9 +12,13 @@ public class Block {
         this.data = data;
         this.previousHash = previousHash;
         this.timestamps = new Date().getTime();
+        this.hash = makeHash();
     }
-    public long getTimestamps(){
-        //test operation
-        return timestamps;
+    //this method calculates this block`s hash
+    public String makeHash(){
+
+        String calculateHash = Encryption.applySha256(previousHash + data + Long.toString(timestamps));
+        return calculateHash;
     }
+
 }
