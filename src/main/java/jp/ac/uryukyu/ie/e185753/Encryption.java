@@ -12,7 +12,8 @@ public class Encryption {
                 if(hex.length() == 1) {
                     hexString.append('0');
                 }
-                hexString.append(hex);//(hes.length()==1)? hexString.append('0'):hexString.append(hex);
+                hexString.append(hex);
+                //(hes.length()==1)? hexString.append('0'):hexString.append(hex);
             }
             return hexString.toString();
         }
