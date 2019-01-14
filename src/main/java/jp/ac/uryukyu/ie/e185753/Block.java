@@ -7,6 +7,7 @@ public class Block {
     public String previousHash;
     private String data;//To make data private variable, data can be protected from others.
     private long timestamps; //record a log.
+    private int nonce;//once-only code.
 
     //Block Constructor.
     public Block(String data, String previousHash) {
@@ -27,6 +28,14 @@ public class Block {
         System.out.print("you can input data here : ");
         String Str_data = sc.nextLine();
         return Str_data;
+    }
 
+    public void mineBlock(int difficultyLevel){
+        String target =  new String(new char[difficultyLevel]).replace('\0', '0'); //difficulty * "0"
+        while(!hash.substring( 0, difficultyLevel).equals(target)) {
+            nonce ++;
+            hash = makeHash();
+        }
+        System.out.println("Block Mined!!! : " + hash);
     }
 }
