@@ -4,15 +4,23 @@ import com.google.gson.*;
 
 public class Blockchain {
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
-    public static int difficultyLevel = 6;
+    public static int difficultyLevel = 3;
     public static void main(String[] args){//dataUserInput()
 
         blockchain.add(new Block(Block.setDataUserInput(),"0"));
-        blockchain.add(new Block(Block.setDataUserInput(),blockchain.get(blockchain.size()-1).hash));
-        blockchain.add(new Block(Block.setDataUserInput(),blockchain.get(blockchain.size()-1).hash));
+        System.out.println("Trying to mine block ...");
+        blockchain.get(0).mineBlock(difficultyLevel);
+        for(int i = 1 ;i < 3;i++){
+            //chain multiple blocks expect for genesis block.
+            blockchain.add(new Block(Block.setDataUserInput(),blockchain.get(blockchain.size()-1).hash));
+            System.out.println("Trying to mine block ...");
+            blockchain.get(i).mineBlock(difficultyLevel);
+        }
+        System.out.println("\nBlockchain is valid:"+isChainValid());
         String blockchainJson = new GsonBuilder().setPrettyPrinting().create().toJson(blockchain);
         //Gson gson = new GsonBuilder().setPrettyPrinting().create();
         //String blockchainJson = gson.toJson(blockchain);
+        System.out.println("\nthe blockchain:");
         System.out.println(blockchainJson);
     }
     public static boolean isChainValid(){
@@ -20,7 +28,7 @@ public class Blockchain {
         Block previousBlock;
         String hashTarget = new String(new char[difficultyLevel]).replace('\0', '0');
 
-        for(int i = 0; i < blockchain.size(); i ++){
+        for(int i = 1; i < blockchain.size(); i ++){
             currentBlock = blockchain.get(i);
             previousBlock = blockchain.get(i-1);
             //compare registered hash and calculated hash
