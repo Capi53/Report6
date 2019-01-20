@@ -19,7 +19,7 @@ public class Block {
 
     //this method calculates this block`s hash
     public String makeHash() {
-        String calculateHash = Encryption.applySha256(previousHash + data + Long.toString(timestamps));
+        String calculateHash = Encryption.applySha256(previousHash + data + Long.toString(timestamps) + Integer.toString(nonce) );
         return calculateHash;
     }
 
@@ -31,11 +31,26 @@ public class Block {
     }
 
     public void mineBlock(int difficultyLevel){
-        String target =  new String(new char[difficultyLevel]).replace('\0', '0'); //difficulty * "0"
+        String target =  new String(new char[difficultyLevel]).replace('\0', '0'); //hash must be start with 0(dificulltyLevel times in a row)
         while(!hash.substring( 0, difficultyLevel).equals(target)) {
             nonce ++;
             hash = makeHash();
+            //System.out.println(nonce);
         }
         System.out.println("Block Mined!!! : " + hash);
+    }
+
+    //for unit test
+    public String getData() {
+        return data;
+    }
+
+    public int setNonce(int nonce) {
+        this.nonce = nonce;
+        return nonce;
+    }
+
+    public long getTimestamps() {
+        return timestamps;
     }
 }
