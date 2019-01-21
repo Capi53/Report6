@@ -2,7 +2,9 @@ package jp.ac.uryukyu.ie.e185753;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+/**  int nonce; //ブロックの要素を暗号化するときに使う一時的な変数。
+ * Created by e185753 on 2019/01/21.
+ */
 class BlockTest {
     Block genesisBlockTest = new Block("hoge","0");
     private int nonce = 0;

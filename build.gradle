@@ -5,12 +5,26 @@ plugins {
 group 'jp.ac.uryukyu.ie.e185753'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 10
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+    compile 'com.google.code.gson:gson:2.2.4'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+}
+
+jar {
+    manifest {
+        attributes  "Main-Class": "jp.ac.uryukyu.ie.e185753.Blockchain"
+        attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
+    }
 }

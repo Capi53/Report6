@@ -1,7 +1,12 @@
 package jp.ac.uryukyu.ie.e185753;
 import java.util.ArrayList;
 import com.google.gson.*;
-
+/**
+ * ブロックチェーンクラス。
+ *  ArrayList<Block> blockchain; //ブロックチェーンのリスト
+ *  int difficultyLevel; //マイニングの難しさ。今回は3。
+ * Created by e185753 on 2019/01/21.
+ */
 public class Blockchain {
     public static ArrayList<Block> blockchain = new ArrayList<Block>();
     public static int difficultyLevel = 3;
@@ -23,6 +28,11 @@ public class Blockchain {
         System.out.println("\nthe blockchain:");
         System.out.println(blockchainJson);
     }
+    /**
+     * 最終的にblockchainが正しいか判定するメソッド。
+     * 前後関係になっているブロック同士が正しいハッシュ値を持っているか確認する。
+     * @return boolean
+     */
     public static boolean isChainValid(){
         Block currentBlock;
         Block previousBlock;
