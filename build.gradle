@@ -23,8 +23,9 @@ test {
 }
 
 jar {
-    manifest {
+    manifest {//classpath
         attributes  "Main-Class": "jp.ac.uryukyu.ie.e185753.Blockchain"
+        attributes "Class-path":"/Users/e185753/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.4/a60a5e993c98c864010053cb901b7eab25306568/gson-2.2.4.jar"
         attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
     }
 }
